@@ -38,9 +38,8 @@ module.exports = {
   },
   devServer: {
     contentBase: './public',
-    writeToDisk: true
-    // historyApiFallBack: true,
-    // clientLogLevel: 'info'
+    writeToDisk: true,
+    historyApiFallback: true
   },
   externals: {
     react: 'React',

@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-// import Login from './presentation/pages/login'
-import Login from '../presentation/pages/login/login'
+import { Router } from '@/presentation/components'
 
 // const JSX = (
 //   <div>
@@ -12,6 +11,6 @@ import Login from '../presentation/pages/login/login'
 // )
 
 ReactDOM.render(
-  <Login />,
+  <Router />,
   document.getElementById('main')
 )
