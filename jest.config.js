@@ -15,5 +15,4 @@ module.exports = {
       '@/(.*)': '<rootDir>/src/$1',
       '\\.scss$': 'identity-obj-proxy'
     }
-    
   }

@@ -4,8 +4,8 @@ import Context from '@/presentation/components/contexts/form/form-context'
 
 type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 const Input: React.FC<Props> = (props: Props) => {
-  const value = useContext(Context)
-  const error = value[`${props.name}Error`]
+  const { errorState } = useContext(Context)
+  const error = errorState[props.name]
   const enableInput = (event: React.FocusEvent<HTMLInputElement>): void => {
     event.target.readOnly = false
   }
