@@ -1,5 +1,6 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
 module.exports = {
   mode: 'development',
   entry: './src/main/index.tsx',
@@ -20,7 +21,8 @@ module.exports = {
         test: /\.ts(x?)$/,
         loader: 'ts-loader',
         exclude: /node_module/
-      }, {
+      },
+      {
         test: /\.scss$/,
         use: [{
           loader: 'style-loader'

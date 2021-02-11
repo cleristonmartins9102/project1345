@@ -1,5 +1,6 @@
 
 module.exports = {
+    verbose: true,
     roots: ['<rootDir>/src'],
     collectCoverageFrom: [
       '<rootDir>/src/**/*.{ts,tsx}',
@@ -14,4 +15,5 @@ module.exports = {
       '@/(.*)': '<rootDir>/src/$1',
       '\\.scss$': 'identity-obj-proxy'
     }
+    
   }
