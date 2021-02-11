@@ -7,12 +7,19 @@ button {
     color: $white;
     border-radius: 8px;
     border: none;
+    &:disabled {
+        background: $disabledBackground;
+        color: $disabledColor;
+        &:hover {
+            opacity: 1;
+        }
+    }
     &:hover {
         opacity: 0.9;
     }
 }
 
-.login {
+.login {    
     // background-color: red;
     display: flex;
     flex-direction: column;
@@ -50,9 +57,5 @@ button {
                 text-decoration: underline;
             }
         }
-
-
-
-        
     }
 }
