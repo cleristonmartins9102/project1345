@@ -7,7 +7,7 @@ export class ValidationSpy implements Validation {
   validate (fieldName: string, fieldValue: string): string {
     this.fieldValue = fieldValue
     this.fieldName = fieldName
-    this.errorMessage = 'fail'
+    this.errorMessage = ''
     return this.errorMessage
   }
 }

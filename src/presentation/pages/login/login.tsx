@@ -11,7 +11,7 @@ type Props = {
 const Login: React.FC<Props> = ({ validation }: Props) => {
   const [state, setState] = useState({
     isLoading: false,
-    email: '1',
+    email: '',
     password: '',
     emailError: 'Campo obrigatorio',
     passwordError: 'Campo obrigatorio',
@@ -19,11 +19,21 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
   })
 
   useEffect(() => {
-    if (typeof validation !== 'undefined') { validation.validate('email', state.email) }
+    if (typeof validation !== 'undefined') {
+      setState({
+        ...state,
+        emailError: validation.validate('email', state.email)
+      })
+    }
   }, [state.email])
 
   useEffect(() => {
-    if (typeof validation !== 'undefined') { validation.validate('password', state.password) }
+    if (typeof validation !== 'undefined') {
+      setState({
+        ...state,
+        passwordError: validation.validate('password', state.password)
+      })
+    }
   }, [state.password])
 
   return (
