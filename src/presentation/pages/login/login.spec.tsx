@@ -1,21 +1,36 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import '@testing-library/jest-dom'
-
+import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
 import Login from './login'
 
+import { Validation } from '@/presentation/protocols/validation'
+
 type SutTypes = {
-  sut: any
+  sut: RenderResult
+  validationSpy: ValidationSpy
+}
+
+class ValidationSpy implements Validation {
+  errorMessage: string
+  input: object
+  validate (input: object): string {
+    this.input = input
+    this.errorMessage = 'fail'
+    return this.errorMessage
+  }
 }
 
 const makeSut = (): SutTypes => {
-  const sut = render(<Login />)
+  const validationSpy = new ValidationSpy()
+  const sut = render(<Login validation={validationSpy}/>)
   return {
-    sut
+    sut,
+    validationSpy
   }
 }
 
 describe('Login Component', () => {
+  afterEach(cleanup)
+
   test('Login', () => {
     const { sut } = makeSut()
     const errorWrap = sut.getByTestId('error-wrap')
@@ -24,5 +39,12 @@ describe('Login Component', () => {
     expect(submitButton.disabled).toBe(true)
     // const emailStatus = getByTestId('email-status') as HTMLSpanElement
     // const statusNode = await getByTestId('email-status')
+  })
+
+  test('Should call validation with correct value', () => {
+    const { sut, validationSpy } = makeSut()
+    const emailInput = sut.getByTestId('email')
+    fireEvent.input(emailInput, { target: { value: 'any' } })
+    expect(validationSpy.input).toEqual({ email: 'any' })
   })
 })
