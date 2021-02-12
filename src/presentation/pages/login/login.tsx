@@ -19,11 +19,11 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
   })
 
   useEffect(() => {
-    if (typeof validation !== 'undefined') { validation.validate({ email: state.email }) }
+    if (typeof validation !== 'undefined') { validation.validate('email', state.email) }
   }, [state.email])
 
   useEffect(() => {
-    if (typeof validation !== 'undefined') { validation.validate({ password: state.password }) }
+    if (typeof validation !== 'undefined') { validation.validate('password', state.password) }
   }, [state.password])
 
   return (
