@@ -18,7 +18,7 @@ const Input: React.FC<Props> = (props: Props) => {
   }
 
   // const getStatus = (): string => error
-  const getError = (): string => error
+  const getError = (): string => error || 'Tudo certo'
 
   return (
     <div className={Styles.inputWrap}>
