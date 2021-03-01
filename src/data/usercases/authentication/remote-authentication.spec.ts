@@ -1,7 +1,7 @@
 import HttpPostClientSpy from '@/data/test/mock-htto-client'
 import RemoteAuthentication from './remote-authentication'
 import faker from 'faker'
-import { mockAuthentication } from '@/domain/test/mock-authentication'
+import { mockAuthentication, mockAccountModel } from '@/domain/test/mock-account'
 import InvalidCredentialsError from '@/domain/errors/invalid-credentials0-error'
 import { HttpStatusCode } from './protocols/http/http-response'
 import UnexpectedError from '@/domain/errors/unexpected-error'
@@ -64,10 +64,12 @@ describe('RemoteAuthentication', () => {
   })
   test('Should throw UnexpectedError if HttpPostClient returns 404', async () => {
     const { sut, httpPostClientSpy } = makeSut()
+    const httpResult = mockAccountModel()
     httpPostClientSpy.response = {
-      statusCode: HttpStatusCode.notFound
+      statusCode: HttpStatusCode.ok,
+      body: httpResult
     }
-    const promise = sut.auth(mockAuthentication())
-    await expect(promise).rejects.toThrow(new UnexpectedError())
+    const account = await sut.auth(mockAuthentication())
+    expect(account).toEqual(httpResult)
   })
 })
